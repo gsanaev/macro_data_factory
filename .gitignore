@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+cat >> .gitignore <<'EOF'
+
+# Downloaded source data
+data/raw/**
+!data/raw/.gitkeep
+EOF
