@@ -12,10 +12,11 @@ dependencies = [
     "pyarrow>=25.0.0",
     "pyyaml>=6.0.3",
     "requests>=2.34.2",
+    "typer>=0.26.8",
 ]
 
 [project.scripts]
-macro-data-factory = "macro_data_factory:main"
+macro-data-factory = "macro_data_factory.cli:app"
 
 [build-system]
 requires = ["uv_build>=0.8.13,<0.9.0"]
