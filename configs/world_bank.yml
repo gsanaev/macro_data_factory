@@ -1,6 +1,26 @@
 # World Bank indicators
 
 indicators:
-  - NY.GDP.MKTP.CD      # GDP (current US$)
-  - SP.POP.TOTL         # Total population
-  - FP.CPI.TOTL.ZG      # Inflation, consumer prices (%)
+  - code: NY.GDP.MKTP.CD
+    name: gdp_current_usd
+
+  - code: NY.GDP.PCAP.KD
+    name: gdp_pc_constant_usd
+
+  - code: SP.POP.TOTL
+    name: population_total
+
+  - code: FP.CPI.TOTL.ZG
+    name: inflation_cpi
+
+  - code: SL.UEM.TOTL.ZS
+    name: unemployment_rate
+
+  - code: SP.DYN.LE00.IN
+    name: life_expectancy
+
+  - code: NE.EXP.GNFS.ZS
+    name: exports_gdp_pct
+
+  - code: NE.IMP.GNFS.ZS
+    name: imports_gdp_pct
