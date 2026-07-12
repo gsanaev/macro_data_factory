@@ -1,0 +1,6 @@
+# World Bank indicators
+
+indicators:
+  - NY.GDP.MKTP.CD      # GDP (current US$)
+  - SP.POP.TOTL         # Total population
+  - FP.CPI.TOTL.ZG      # Inflation, consumer prices (%)

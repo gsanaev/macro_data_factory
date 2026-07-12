@@ -42,6 +42,7 @@ def observations_to_dataframe(
             {
                 "indicator_code": indicator.get("id"),
                 "indicator_name": indicator.get("value"),
+                "provider_country_id": country.get("id"),
                 "country_code": observation.get("countryiso3code"),
                 "country_name": country.get("value"),
                 "year": observation.get("date"),
