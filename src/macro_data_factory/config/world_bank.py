@@ -20,8 +20,6 @@ def load_indicators(config_path: Path) -> list[dict[str, str]]:
 
     for indicator in indicators:
         if "code" not in indicator or "name" not in indicator:
-            raise ValueError(
-                "Each indicator must define 'code' and 'name'."
-            )
+            raise ValueError("Each indicator must define 'code' and 'name'.")
 
     return indicators

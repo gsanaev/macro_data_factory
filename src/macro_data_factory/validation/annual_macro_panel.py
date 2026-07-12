@@ -31,16 +31,13 @@ def summarize_annual_macro_panel(input_path: Path) -> dict[str, object]:
         raise ValueError(f"Missing required columns: {missing}")
 
     indicator_columns = [
-        column
-        for column in dataframe.columns
-        if column not in required_columns
+        column for column in dataframe.columns if column not in required_columns
     ]
 
     duplicate_keys = int(dataframe.duplicated(KEY_COLUMNS).sum())
 
     missingness = {
-        column: int(dataframe[column].isna().sum())
-        for column in indicator_columns
+        column: int(dataframe[column].isna().sum()) for column in indicator_columns
     }
 
     aggregate_examples = (
@@ -73,10 +70,7 @@ def print_annual_macro_panel_summary(summary: dict[str, object]) -> None:
     print("--------------------------")
     print(f"Rows:             {summary['rows']}")
     print(f"Entities:         {summary['entities']}")
-    print(
-        f"Years:            {summary['minimum_year']}"
-        f"–{summary['maximum_year']}"
-    )
+    print(f"Years:            {summary['minimum_year']}–{summary['maximum_year']}")
     print(f"Indicators:       {summary['indicator_count']}")
     print(f"Duplicate keys:   {summary['duplicate_keys']}")
 

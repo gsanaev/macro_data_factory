@@ -29,15 +29,15 @@ def build_annual_panel() -> None:
     """Build the annual macroeconomic panel from interim datasets."""
     indicators = load_indicators(WORLD_BANK_CONFIG_PATH)
 
-    indicator_names = {
-        indicator["code"]: indicator["name"]
-        for indicator in indicators
-    }
+    indicator_names = {indicator["code"]: indicator["name"] for indicator in indicators}
+
+    indicator_codes = [indicator["code"] for indicator in indicators]
 
     build_annual_macro_panel(
         input_dir=INTERIM_WORLD_BANK_DIR,
         output_path=PROCESSED_DIR / "annual_macro_panel.parquet",
         indicator_names=indicator_names,
+        indicator_codes=indicator_codes,
     )
 
 
@@ -95,7 +95,7 @@ def world_bank() -> None:
 
     for indicator in indicators:
         indicator_code = indicator["code"]
-        
+
         typer.echo(f"Running pipeline for {indicator_code}")
 
         download_indicator(
@@ -119,10 +119,9 @@ def build_world_bank() -> None:
     if not indicators:
         raise ValueError("No World Bank indicators found in the configuration.")
 
-    indicator_names = {
-        indicator["code"]: indicator["name"]
-        for indicator in indicators
-    }
+    indicator_names = {indicator["code"]: indicator["name"] for indicator in indicators}
+
+    indicator_codes = [indicator["code"] for indicator in indicators]
 
     for indicator in indicators:
         indicator_code = indicator["code"]
@@ -150,13 +149,14 @@ def build_world_bank() -> None:
         input_dir=INTERIM_WORLD_BANK_DIR,
         output_path=panel_path,
         indicator_names=indicator_names,
+        indicator_codes=indicator_codes,
     )
 
     panel_summary = summarize_annual_macro_panel(panel_path)
     print_annual_macro_panel_summary(panel_summary)
 
     typer.echo("\nWorld Bank workflow completed successfully.")
-    
+
 
 @app.command("validate-annual-panel")
 def validate_annual_panel() -> None:

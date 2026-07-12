@@ -52,9 +52,6 @@ def print_summary(summary: dict[str, int | str]) -> None:
     print(f"Indicator:       {summary['indicator']}")
     print(f"Rows:            {summary['rows']}")
     print(f"Countries:       {summary['countries']}")
-    print(
-        f"Years:           {summary['minimum_year']}"
-        f"–{summary['maximum_year']}"
-    )
+    print(f"Years:           {summary['minimum_year']}–{summary['maximum_year']}")
     print(f"Missing values:  {summary['missing_values']}")
     print(f"Duplicate keys:  {summary['duplicate_keys']}")

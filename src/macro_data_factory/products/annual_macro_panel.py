@@ -49,34 +49,33 @@ def load_indicator_data(
         )
 
     indicator_code = str(indicator_codes[0])
-    
+
     if indicator_code not in indicator_names:
         raise ValueError(
             f"Indicator code {indicator_code} not is not defined in the configuration."
         )
-    
+
     variable_name = indicator_names[indicator_code]
 
     if dataframe.duplicated(KEY_COLUMNS).any():
         raise ValueError(f"Duplicate country-year keys found in {input_path}")
 
-    return dataframe[KEY_COLUMNS + ["value"]].rename(
-        columns={"value": variable_name}
-    )
+    return dataframe[KEY_COLUMNS + ["value"]].rename(columns={"value": variable_name})
 
 
 def build_annual_macro_panel(
     input_dir: Path,
     output_path: Path,
     indicator_names: dict[str, str],
+    indicator_codes: list[str],
 ) -> Path:
     """Merge all interim World Bank indicators into one annual panel."""
-    input_files = sorted(input_dir.glob("*.parquet"))
+    input_files = [
+        input_dir / f"{indicator_code}.parquet" for indicator_code in indicator_codes
+    ]
 
     if not input_files:
-        raise FileNotFoundError(
-            f"No interim Parquet files found in: {input_dir}"
-        )
+        raise FileNotFoundError(f"No interim Parquet files found in: {input_dir}")
 
     panel: pd.DataFrame | None = None
 
@@ -99,14 +98,12 @@ def build_annual_macro_panel(
     if panel is None:
         raise RuntimeError("Annual macro panel could not be built.")
 
-    panel = panel.sort_values(
-        ["provider_country_id", "year"]
-    ).reset_index(drop=True)
+    panel = panel.sort_values(["provider_country_id", "year"]).reset_index(drop=True)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     panel.to_parquet(output_path, index=False)
-    
+
     stata_output_path = output_path.with_suffix(".dta")
 
     panel.to_stata(

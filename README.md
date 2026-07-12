@@ -44,10 +44,9 @@ The primary outputs are:
 - research-ready country-year datasets
 - research-ready country-quarter datasets
 - research-ready country-month datasets
-- metadata
-- validation reports
-- Stata datasets
 - Parquet datasets
+- Stata datasets
+- validation reports
 
 ## Guiding Principles
 
@@ -66,11 +65,30 @@ The primary outputs are:
 - Git and GitHub for version control
 - GitHub Actions for continuous integration
 
+## Current Workflow
+
+Build the complete World Bank pipeline:
+
+```bash
+uv run macro-data-factory build-world-bank
+
 ## Repository Status
 
-🚧 This project is currently under active development.
+🚧 This project is under active development.
 
-The repository architecture is being designed before implementation begins in order to ensure long-term maintainability and reproducibility.
+The first production-ready data pipeline has been implemented for the World Bank.
+
+Current capabilities include:
+
+- configuration-driven data acquisition
+- reproducible raw data downloads
+- standardized interim datasets (Parquet)
+- dataset validation
+- construction of a research-ready annual macroeconomic panel
+- export to Parquet and Stata
+- command-line interface for the complete workflow
+
+Additional international data providers and dataset products will be added incrementally using the same architecture.
 
 ## License
 
