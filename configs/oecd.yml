@@ -1,0 +1,12 @@
+# OECD test series
+
+series:
+  - name: gdp_current_lcu_australia
+    agency: OECD.SDD.NAD
+    dataset: DSD_NAMAIN10@DF_TABLE1_EXPENDITURE
+    version: "2.0"
+    selection: A.AUS...B1GQ....XDC.V..
+    parameters:
+      startPeriod: "2021"
+      dimensionAtObservation: AllDimensions
+      format: csvfilewithlabels

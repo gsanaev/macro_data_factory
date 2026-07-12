@@ -16,7 +16,11 @@ from macro_data_factory.validation.annual_macro_panel import (
     summarize_annual_macro_panel,
 )
 
+from macro_data_factory.commands.oecd import app as oecd_app
+
 app = typer.Typer(help="Build reproducible research datasets for empirical economics.")
+
+app.add_typer(oecd_app, name="oecd")
 
 RAW_WORLD_BANK_DIR = Path("data/raw/world_bank")
 INTERIM_WORLD_BANK_DIR = Path("data/interim/world_bank")
